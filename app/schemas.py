@@ -1,6 +1,6 @@
 from datetime import datetime
-from pydantic import BaseModel
-
+from pydantic import BaseModel , EmailStr
+from datetime import datetime
 
 class PostBase(BaseModel):
     title : str
@@ -23,4 +23,20 @@ class PostResponse(BaseModel):
 
     class Config:
         orm_mode = True
+
+
+class UserCreate(BaseModel):
+    
+    email : EmailStr
+    password : str 
+
+
+class UserOutput(BaseModel):
+
+    id : int
+    email : EmailStr
+    created_at : datetime
+
+    class Config :                                                              # done for only making sure a specific data is only viewed by the FE 
+        orm_mode = True 
 
